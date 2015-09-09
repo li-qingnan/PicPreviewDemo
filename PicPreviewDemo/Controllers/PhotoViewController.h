@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PhotoViewController.h
 //  PicPreviewDemo
 //
 //  Created by Yinan on 15/9/9.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface PhotoViewController : UIViewController
 
+@property(nonatomic, assign) NSInteger number;
 
 @end
-

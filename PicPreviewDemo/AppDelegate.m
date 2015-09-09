@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ThumbnailViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,18 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+    ThumbnailViewController *thumbnailVC = [[ThumbnailViewController alloc] init];
+    UINavigationController *rootNC = [[UINavigationController alloc] initWithRootViewController:thumbnailVC];
+    self.window.rootViewController = rootNC;
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
