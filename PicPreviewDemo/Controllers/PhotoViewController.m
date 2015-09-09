@@ -41,32 +41,30 @@
     for (int i = 0; i < 12; i++) {
         //给定图片frame x为底层ScrollView的宽度 * 相应的i  h应为底层ScrollView的高度 - 64 因为上面有导航栏和状态栏
         CGRect frame = CGRectMake(_bottomScrollView.frame.size.width * i, 0, _bottomScrollView.frame.size.width, _bottomScrollView.frame.size.height - 64);
-        NSString *name = [NSString stringWithFormat:@"%d.gif",i +1];
+        NSString *name = [NSString stringWithFormat:@"%d.png",i +1];
         UIImage *image = [UIImage imageNamed:name];
         
         //创建相应的scrollView
         ZoomScrollView *scrollView = [[ZoomScrollView alloc] initWithFrame:frame image:image];
         scrollView.tag = 100 +i;
         [_bottomScrollView addSubview:scrollView];
-
-        
     }
     
     
     //显示指定图片
     //偏移量
-    CGFloat x = (_number - 100) * 320;
+    CGFloat x = (_number - 100) * [UIScreen mainScreen].bounds.size.width;
     CGPoint offset = CGPointMake(x, 0);
     [_bottomScrollView setContentOffset:offset animated:YES];
     //显示在photoViewController上
     [self.view addSubview:_bottomScrollView];
     
     //创建UIPageControl
-    _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(100, 500, 120, 50)];
+    _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2 - 60, [UIScreen mainScreen].bounds.size.height - 50, 120, 50)];
     //设置page个数
     _pageControl.numberOfPages = 12;
-    _pageControl.currentPageIndicatorTintColor=[UIColor greenColor];
-    _pageControl.pageIndicatorTintColor=[UIColor grayColor];
+    _pageControl.currentPageIndicatorTintColor = [UIColor greenColor];
+    _pageControl.pageIndicatorTintColor = [UIColor grayColor];
     [self.view addSubview:_pageControl];
 
     //添加响应方法
@@ -80,7 +78,7 @@
 //滑动方法
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {   //偏移量
-    CGFloat x = scrollView.contentOffset.x/320;
+    CGFloat x = scrollView.contentOffset.x/[UIScreen mainScreen].bounds.size.width;
     //设置相应的title x的值第一页为0  所以加1
     self.navigationItem.title=[NSString stringWithFormat:@"第%d张",(int)x+1];
     //page当前页 从0开始

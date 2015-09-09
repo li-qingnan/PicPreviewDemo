@@ -28,6 +28,23 @@
 - (void)initialThumbnail
 {
     CGFloat x = 15,y = 7;
+
+    CGFloat xSpacing = 0;
+    CGFloat ySpacing = 0;
+    if([UIScreen mainScreen].bounds.size.width == 320){
+        xSpacing = 100;
+        ySpacing = 130;
+    }
+    
+    if([UIScreen mainScreen].bounds.size.width == 375){
+        xSpacing = 127;
+        ySpacing = 150;
+    }
+    
+    if([UIScreen mainScreen].bounds.size.width == 414){
+        xSpacing = 142;
+        ySpacing = 150;
+    }
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height+7);
@@ -53,10 +70,10 @@
         imageView.action = @selector(cutView:);
         
         //布局缩略图
-        x += 100;
+        x += xSpacing;
         if (x >= 300) {
             x = 15;
-            y += 130;
+            y += ySpacing;
             
         }
         
